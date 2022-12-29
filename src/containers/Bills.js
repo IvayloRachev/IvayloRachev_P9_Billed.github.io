@@ -39,6 +39,8 @@ export default class {
               return {
                 ...doc,
                 date: formatDate(doc.date),
+                //Ajout du tri des dates pour la page views/BillUi.js
+                originalDate: doc.date,
                 status: formatStatus(doc.status)
               }
             } catch(e) {
