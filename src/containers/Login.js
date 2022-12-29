@@ -41,12 +41,8 @@ export default class Login {
     e.preventDefault()
     const user = {
       type: "Admin",
-      // Remplacement de "data-testid="employee-email-input" par "data-testid="admin-email-input" sinon erreur et connexion impossible
-      // Utilisation de jest pour coonaître le problème
-      email: e.target.querySelector(`input[data-testid="admin-email-input"]`).value,
-      // Remplacement de "data-testid="employee-password-input" par "data-testid="admin-password-input" sinon erreur et connexion impossible
-      // Utilisation de jest pour coonaître le problème
-      password: e.target.querySelector(`input[data-testid="admin-password-input"]`).value,
+      email: e.target.querySelector(`input[data-testid="employee-email-input"]`).value,
+      password: e.target.querySelector(`input[data-testid="employee-password-input"]`).value,
       status: "connected"
     }
     this.localStorage.setItem("user", JSON.stringify(user))
