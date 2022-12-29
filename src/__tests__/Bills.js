@@ -65,3 +65,26 @@ describe("When i click on New Bill", () => {
     expect(screen.getByTestId("form-new-bill")).toBeTruthy();
   });
 });
+
+//handleClickIconEye //containers/Bills.js
+describe("When i click on the icon eye", () => {
+  test("Then the display proof should open", () => {
+    const onNavigate = (pathname) => {
+      document.body.innerHTML = ROUTES({pathname});
+    };
+    const html = BillsUI({data: bills});
+    document.body.innerHTML = html;
+    $.fn.modal = jest.fn();
+
+    const mockedBills = new Bills({document, onNavigate, mockStore, localStorage: window.localStorage});
+
+    const iconEye = screen.getAllByTestId("icon-eye")[0];
+    const handleClickIconEye = jest.fn(mockedBills.handleClickIconEye(iconEye));
+
+    iconEye.addEventListener("click", handleClickIconEye);
+    userEvent.click(iconEye);
+
+    expect(handleClickIconEye).toHaveBeenCalled;
+    expect(screen.getAllByText("Justificatif")).toBeTruthy();
+  });
+});
