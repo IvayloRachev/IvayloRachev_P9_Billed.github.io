@@ -45,3 +45,23 @@ describe("Given I am connected as an employee", () => {
     });
   });
 });
+
+//buttonNewBill/handleClickNewBill //containers/Bills.js
+describe("When i click on New Bill", () => {
+  test("Then the new bill page should open", () => {
+    const onNavigate = (pathname) => {
+      document.body.innerHTML = ROUTES({pathname});
+    };
+    const mockedBills = new Bills({document, onNavigate, mockStore, localStorage: window.localStorage});
+
+    const handleClickNewBill = jest.fn((e) => mockedBills.handleClickNewBill(e));
+
+    const buttonNewBill = screen.getByTestId("btn-new-bill");
+    buttonNewBill.addEventListener("click", handleClickNewBill);
+    userEvent.click(buttonNewBill);
+
+    expect(handleClickNewBill).toHaveBeenCalled();
+    expect(screen.getAllByText("Envoyer une note de frais")).toBeTruthy();
+    expect(screen.getByTestId("form-new-bill")).toBeTruthy();
+  });
+});
