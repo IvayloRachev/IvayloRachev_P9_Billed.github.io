@@ -144,10 +144,14 @@ export default class {
         .html("")
       this.counter ++
     }
+    //Ajout de la méthode stopImmediatePropagation() pour que la page ne charge pas l'ensemble de tickets
+    bills.forEach((bill) => {
+      $(`#open-bill${bill.id}`).click((e) => {
+        e.stopImmediatePropagation();
+        this.handleEditTicket(e, bill, bills);
+      });
+    });
 
-    bills.forEach(bill => {
-      $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
-    })
 
     return bills
 
