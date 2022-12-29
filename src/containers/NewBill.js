@@ -7,6 +7,7 @@ export default class NewBill {
     this.onNavigate = onNavigate
     this.store = store
     const formNewBill = this.document.querySelector(`form[data-testid="form-new-bill"]`)
+
     formNewBill.addEventListener("submit", this.handleSubmit)
     const file = this.document.querySelector(`input[data-testid="file"]`)
     file.addEventListener("change", this.handleChangeFile)
@@ -15,6 +16,7 @@ export default class NewBill {
     this.billId = null
     new Logout({ document, localStorage, onNavigate })
   }
+
   handleChangeFile = e => {
     e.preventDefault()
     const file = this.document.querySelector(`input[data-testid="file"]`).files[0]
@@ -22,8 +24,12 @@ export default class NewBill {
     const fileName = filePath[filePath.length-1]
     const formData = new FormData()
     const email = JSON.parse(localStorage.getItem("user")).email
+    // Ajout d'une conition pour gérer les extensions
+    const extensionFile = fileName.split('.').pop();
+    if (extensionFile === "jpg" || extensionFile === "jpeg" || extensionFile === "png"){
     formData.append('file', file)
     formData.append('email', email)
+  }
 
     this.store
       .bills()
