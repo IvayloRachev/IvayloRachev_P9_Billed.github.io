@@ -20,9 +20,7 @@ describe("Given I am connected as an employee", () => {
     test("Then bill icon in vertical layout should be highlighted", async () => {
 
       Object.defineProperty(window, 'localStorage', { value: localStorageMock });
-      window.localStorage.setItem('user', JSON.stringify({
-        type: 'Employee',
-      }));
+      window.localStorage.setItem('user', JSON.stringify({type: 'Employee',}));
       const root = document.createElement("div");
       root.setAttribute("id", "root");
       document.body.append(root);
@@ -108,7 +106,7 @@ describe("Given i am a user connected as employee", () => {
         document.body.innerHTML = ROUTES({ pathname });
       };
       const mockedBills = new Bills({document, onNavigate, store: mockStore, localStorage: window.localStorage,});
-      console.log(mockStore);
+      //console.log(mockStore);
       const bills = await mockedBills.getBills();
       expect(bills.length != 0).toBeTruthy();
     });

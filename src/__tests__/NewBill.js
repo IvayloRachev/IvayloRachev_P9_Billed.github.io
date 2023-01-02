@@ -19,12 +19,7 @@ describe("Given I am connected as an employee", () => {
       Object.defineProperty(window, "localStorage", {
         value: localStorageMock,
       });
-      window.localStorage.setItem(
-        "user",
-        JSON.stringify({
-          type: "Employee",
-        })
-      );
+      window.localStorage.setItem("user", JSON.stringify({type: "Employee",}));
       const root = document.createElement("div");
       root.setAttribute("id", "root");
       document.body.append(root);
@@ -42,12 +37,7 @@ describe("Given I am connected as an employee", () => {
         document.body.innerHTML = ROUTES({ pathname });
       };
       document.body.innerHTML = NewBillUI();
-      const newBill = new NewBill({
-        document,
-        onNavigate,
-        store: mockStore,
-        localStorage: window.localStorage,
-      });
+      const newBill = new NewBill({document, onNavigate, store: mockStore, localStorage: window.localStorage,});
       const handleChangeFile = jest.fn(newBill.handleChangeFile);
       const inputBtn = screen.getByTestId("file");
       inputBtn.addEventListener("change", handleChangeFile);
@@ -66,16 +56,8 @@ describe("Given I am connected as an employee", () => {
 describe("Given I am a user connected as Employee", () => {
   describe("When I create a new bill", () => {
     test("send bills to mock API POST", async () => {
-      Object.defineProperty(window, "localStorage", {
-        value: localStorageMock,
-      });
-      window.localStorage.setItem(
-        "user",
-        JSON.stringify({
-          type: "Employee",
-          email: "a@a",
-        })
-      );
+      Object.defineProperty(window, "localStorage", {value: localStorageMock,});
+      window.localStorage.setItem("user", JSON.stringify({type: "Employee",email: "a@a",}));
       const root = document.createElement("div");
       root.setAttribute("id", "root");
       document.body.append(root);
@@ -87,12 +69,7 @@ describe("Given I am a user connected as Employee", () => {
 
       document.body.innerHTML = NewBillUI();
 
-      const newBill = new NewBill({
-        document,
-        onNavigate,
-        store: mockStore,
-        localStorage: window.localStorage,
-      });
+      const newBill = new NewBill({document, onNavigate, store: mockStore, localStorage: window.localStorage,});
 
       const buttonSendBill = screen.getByTestId("form-new-bill");
       const handleSubmit = jest.fn(newBill.handleSubmit);
@@ -106,13 +83,7 @@ describe("Given I am a user connected as Employee", () => {
     beforeEach(() => {
       jest.spyOn(mockStore, "bills");
 
-      window.localStorage.setItem(
-        "user",
-        JSON.stringify({
-          type: "Employee",
-          email: "a@a",
-        })
-      );
+      window.localStorage.setItem("user", JSON.stringify({type: "Employee", email: "a@a",}));
       const root = document.createElement("div");
       root.setAttribute("id", "root");
       document.body.appendChild(root);
