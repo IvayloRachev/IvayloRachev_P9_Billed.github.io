@@ -27,9 +27,6 @@ export default class NewBill {
     if (extensionFile === "jpg" || extensionFile === "jpeg" || extensionFile === "png") {
       formData.append("file", file);
       formData.append("email", email);
-    }else {
-      errorMessage = document.createElement("p");
-      errorMessage.innerText = "Extension invalide";
     }
 
     this.store
