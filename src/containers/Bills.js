@@ -30,7 +30,7 @@ export default class {
       .html(`<div style='text-align: center;' class="bill-proof-container" data-testid="img-proof-modal"><img width=${imgWidth} src=${billUrl} alt="Bill" /></div>`);
     $("#modaleFile").modal("show");
   };
-  //** ajout du tri des date sur la page views/BillUi.js */
+  //ajout du tri des dates sur la page views/BillUi.js
   getBills = () => {
     if (this.store) {
       return this.store
