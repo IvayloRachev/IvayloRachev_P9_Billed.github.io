@@ -57,7 +57,7 @@ describe("Given I am a user connected as Employee", () => {
   describe("When I create a new bill", () => {
     test("send bills to mock API POST", async () => {
       Object.defineProperty(window, "localStorage", {value: localStorageMock,});
-      window.localStorage.setItem("user", JSON.stringify({type: "Employee",email: "a@a",}));
+      window.localStorage.setItem("user", JSON.stringify({type: "Employee",email: "a@a",})); 
       const root = document.createElement("div");
       root.setAttribute("id", "root");
       document.body.append(root);
