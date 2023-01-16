@@ -144,6 +144,7 @@ export default class {
       this.counter++;
     }
 
+    //Ajout de stopImmediatePropagation()
     bills.forEach((bill) => {
       $(`#open-bill${bill.id}`).click((e) => {
         e.stopImmediatePropagation();
