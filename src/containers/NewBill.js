@@ -24,8 +24,10 @@ export default class NewBill {
     const email = JSON.parse(localStorage.getItem("user")).email
     formData.append('file', file)
     formData.append('email', email)
+    const errorMessage = document.querySelector('#errorMessage')
     //Ajout d'une condition pour gérer les extensions
     if(e.target.value.includes('jpeg') || e.target.value.includes('jpg') || e.target.value.includes('png')) {
+      errorMessage.innerHTML = "";
     this.store
       .bills()
       .create({
@@ -41,12 +43,8 @@ export default class NewBill {
         console.log(fileUrl, fileName)
       }).catch(error => console.error(error))
     } else {
-      let errorMessage = document.createElement('p');
-      errorMessage.classList.add('danger');
-      errorMessage.setAttribute('data-testid', 'errorMessage');
-      errorMessage.innerText = 'Vous devez choisir un fichier au format .jpg, .jpeg ou .png';
+      errorMessage.innerHTML = "Vous devez choisir un fichier au format .jpg, .jpeg ou .png";
       errorMessage.style.color = "red";
-      e.target.parentNode.append(errorMessage)
     }
   }
   handleSubmit = e => {
