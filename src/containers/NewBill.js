@@ -66,6 +66,13 @@ export default class NewBill {
       fileName: this.fileName,
       status: 'pending'
     }
+
+    //Ajout d'une condition si pas de fichier au bon format on empêche la redirection et on reste sur la page de nouvelle note de frais
+    if(!this.fileName) {
+      return
+    }
+    //Fin de Ajout d'une condition si pas de fichier au bon format on empêche la redirection et on reste sur la page de nouvelle note de frais
+
     this.updateBill(bill)
     this.onNavigate(ROUTES_PATH['Bills'])
   }
